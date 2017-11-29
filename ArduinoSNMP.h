@@ -1009,8 +1009,10 @@ typedef struct SNMP_PDU {
       }
 
       //length of remainder of value
-      buffer[index--] = lsb(start_index - index + extra_data_size);
-      buffer[index--] = msb(start_index - index + extra_data_size);
+      //don't decrement index until after calculating length
+      buffer[index] = lsb(start_index - index + extra_data_size);
+      buffer[index-1] = msb(start_index - index + extra_data_size);
+      index -= 2;
       buffer[index--] = 0x82;//Sending length in two octets
       buffer[index--] = SNMP_SYNTAX_SEQUENCE;  
       

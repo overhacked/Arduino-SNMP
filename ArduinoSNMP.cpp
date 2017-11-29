@@ -412,8 +412,10 @@ uint16_t SNMPClass::writeHeaders(SNMP_PDU *pdu)
   
   //start of header
   //length of all data after this point
-  _packet[_packetPos--] = lsb(packet_length()+_extra_data_size);
-  _packet[_packetPos--] = msb(packet_length()+_extra_data_size);
+  //don't decrement _packetPos until after calculating length
+  _packet[_packetPos] = lsb(packet_length()+_extra_data_size);
+  _packet[_packetPos-1] = msb(packet_length()+_extra_data_size);
+  _packetPos -= 2;
   _packet[_packetPos--] = 0x82;//Sending length in two octets
 
   _packet[_packetPos--] = (byte)SNMP_SYNTAX_SEQUENCE;
@@ -497,8 +499,10 @@ SNMP_API_STAT_CODES SNMPClass::responsePdu(SNMP_PDU *pdu, IPAddress to_address, 
   _packet[_packetPos--] = (byte)SNMP_SYNTAX_INT;// type
 
   //length value of all previous data
-  _packet[_packetPos--] = lsb(packet_length()+_extra_data_size);
-  _packet[_packetPos--] = msb(packet_length()+_extra_data_size);
+  //don't decrement _packetPos until after calculating length
+  _packet[_packetPos] = lsb(packet_length()+_extra_data_size);
+  _packet[_packetPos-1] = msb(packet_length()+_extra_data_size);
+  _packetPos -= 2;
   _packet[_packetPos--] = 0x82;//Sending length in two octets
     
   // SNMP PDU type
