@@ -51,27 +51,27 @@ typedef unsigned long long uint64_t;
 typedef union uint64_u {
   uint64_t uint64;
   byte data[8];
-};
+} uint64_u ;
 
 typedef union int32_u {
   int32_t int32;
   byte data[4];
-};
+} int32_u ;
 
 typedef union uint32_u {
   uint32_t uint32;
   byte data[4];
-};
+} uint32_u ;
 
 typedef union int16_u {
   int16_t int16;
   byte data[2];
-};
+} int16_u ;
 
 typedef union uint16_u {
   uint16_t uint16;
   byte data[2];
-};
+} uint16_u ;
 
 //typedef union uint16_u {
 //	uint16_t uint16;
@@ -86,7 +86,7 @@ typedef enum ASN_BER_BASE_TYPES {
   ASN_BER_BASE_PUBLIC 	 = 0xC0,
   ASN_BER_BASE_PRIMITIVE 	 = 0x0,
   ASN_BER_BASE_CONSTRUCTOR = 0x20
-};
+} ASN_BER_BASE_TYPES ;
 
 typedef enum SNMP_PDU_TYPES {
   // PDU choices
@@ -99,7 +99,7 @@ typedef enum SNMP_PDU_TYPES {
   SNMP_PDU_INFORM_REQUEST  = ASN_BER_BASE_CONTEXT | ASN_BER_BASE_CONSTRUCTOR | 6,
   SNMP_PDU_TRAP2  = ASN_BER_BASE_CONTEXT | ASN_BER_BASE_CONSTRUCTOR | 7,
   SNMP_PDU_REPORT  = ASN_BER_BASE_CONTEXT | ASN_BER_BASE_CONSTRUCTOR | 8,
-};
+} SNMP_PDU_TYPES ;
 
 typedef enum SNMP_TRAP_TYPES {
   //   Trap generic types:
@@ -110,7 +110,7 @@ typedef enum SNMP_TRAP_TYPES {
   SNMP_TRAP_AUTHENTICATION_FAIL = 4,
   SNMP_TRAP_EGP_NEIGHBORLOSS    = 5,
   SNMP_TRAP_ENTERPRISE_SPECIFIC = 6
-};
+} SNMP_TRAP_TYPES ;
 
 typedef enum SNMP_ERR_CODES {
   SNMP_ERR_NO_ERROR 	  		= 0,
@@ -133,7 +133,7 @@ typedef enum SNMP_ERR_CODES {
   SNMP_ERR_AUTHORIZATION_ERROR		= 16,
   SNMP_ERR_NOT_WRITABLE			= 17,
   SNMP_ERR_INCONSISTEN_NAME		= 18
-};
+} SNMP_ERR_CODES ;
 
 typedef enum SNMP_API_STAT_CODES {
   SNMP_API_STAT_SUCCESS = 0,
@@ -144,7 +144,7 @@ typedef enum SNMP_API_STAT_CODES {
   SNMP_API_STAT_PACKET_INVALID = 5,
   SNMP_API_STAT_PACKET_TOO_BIG = 6,
   SNMP_API_STAT_NO_SUCH_NAME = 7,
-};
+} SNMP_API_STAT_CODES ;
 
 //
 // http://oreilly.com/catalog/esnmp/chapter/ch02.html Table 2-1: SMIv1 Datatypes
@@ -168,7 +168,7 @@ typedef enum SNMP_SYNTAXES {
   SNMP_SYNTAX_NSAPADDR 	       = ASN_BER_BASE_APPLICATION | ASN_BER_BASE_PRIMITIVE | 5,
   SNMP_SYNTAX_COUNTER64 	       = ASN_BER_BASE_APPLICATION | ASN_BER_BASE_PRIMITIVE | 6,
   SNMP_SYNTAX_UINT32 	       = ASN_BER_BASE_APPLICATION | ASN_BER_BASE_PRIMITIVE | 7,
-};
+} SNMP_SYNTAXES ;
 
 typedef struct SNMP_OID {
   unsigned int data[SNMP_MAX_OID_LEN];  // ushort array insted??
@@ -347,7 +347,7 @@ typedef struct SNMP_OID {
     memset(data, 0, SNMP_MAX_OID_LEN);
     size = 0;
   }
-};
+} SNMP_OID ;
 
 /**
  * SNMP Value structure
@@ -929,7 +929,7 @@ typedef struct SNMP_VALUE {
   byte lsb(uint16_t num){
     return num & 0xFF;
   }
-};
+} SNMP_VALUE ;
 
 typedef struct SNMP_PDU {
   SNMP_PDU_TYPES type;
@@ -1055,7 +1055,7 @@ typedef struct SNMP_PDU {
   byte lsb(uint16_t num){
     return num & 0xFF;
   }
-};
+} SNMP_PDU ;
 
 class SNMPClass {
 public:
