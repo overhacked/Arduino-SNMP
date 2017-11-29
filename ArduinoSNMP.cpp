@@ -47,7 +47,7 @@ SNMP_API_STAT_CODES SNMPClass::begin(char *getCommName,
   _trapCommName = trapCommName;
   
   // validate session port number
-  if ( port == NULL || port == 0 ) port = SNMP_DEFAULT_PORT;
+  if ( port == 0 ) port = SNMP_DEFAULT_PORT;
   //
   // init UDP socket
   Udp.begin(port);
