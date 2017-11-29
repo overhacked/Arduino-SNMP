@@ -294,7 +294,7 @@ typedef struct SNMP_OID {
     return size;
   }
   
-  byte fromString_P(prog_char *buffer){
+  byte fromString_P(const char *buffer){
       clear();
       
       byte b_size = strlen_P(buffer);
@@ -955,14 +955,14 @@ typedef struct SNMP_PDU {
     //sysUpTime
     t_v->OID.clear();
     t_v->clear();
-    t_v->OID.fromString("1.3.6.1.2.1.1.3.0");//OID of the value type being sent
+    t_v->OID.fromString_P("1.3.6.1.2.1.1.3.0");//OID of the value type being sent
     t_v->encode(SNMP_SYNTAX_TIME_TICKS, millis()/10);
     value.size = add_data(t_v);
     
     //SNMPv2 trapOID
     t_v->OID.clear();
     t_v->clear();
-    t_v->OID.fromString("1.3.6.1.6.3.1.1.4.1.0");//OID of the value type being sent
+    t_v->OID.fromString_P("1.3.6.1.6.3.1.1.4.1.0");//OID of the value type being sent
     t_v->size = value.OID.encode(t_v->data);
     value.size = add_data(t_v);
   }
